@@ -32,93 +32,115 @@
         </p>
     </div>
 
-    <div class="max-w-6xl mx-auto p-8 bg-white shadow-xl rounded-xl border border-gray-200">
+    <!-- MAIN LAYOUT: LEFT (INFO) + RIGHT (TREE) -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 p-4">
 
-        <!-- INSTRUCTIONS -->
-        <div class="bg-green-50 border-l-4 border-green-600 p-6 rounded mb-10">
-            <h2 class="text-2xl font-semibold text-green-700 mb-3">
-                📌 Instructions / निर्देशन
+        <!-- LEFT SIDE: INSTRUCTIONS & ETHICAL NOTICE -->
+        <div class="md:col-span-1 bg-white shadow-lg rounded-xl border border-gray-200 p-6 h-fit">
+
+            <h2 class="text-2xl font-semibold text-green-700 mb-4">
+                📘 Instructions / निर्देशन
             </h2>
 
-            <ul class="space-y-2 text-gray-700 leading-relaxed">
+            <ul class="space-y-3 text-gray-700 leading-relaxed">
                 <li>✔ Enter a member ID to visualize a 4-level family tree.</li>
-                <li>✔ Hover over any member’s photo to see full details.</li>
-                <li>✔ Missing members will automatically show a message (e.g., “No father data available”).</li>
+                <li>✔ Hover over any member’s card to view additional details.</li>
+                <li>✔ Missing members will show messages like “No father data available”.</li>
                 <li>✔ Use this tool to explore family lineage and relationships.</li>
             </ul>
+
+            <hr class="my-6">
+
+            <h2 class="text-2xl font-semibold text-red-700 mb-4">
+                ⚠ Ethical Use Notice / नैतिक प्रयोग
+            </h2>
+
+            <p class="text-gray-700 leading-relaxed">
+                यो प्रणाली केवल व्यक्तिगत जानकारी, परिवारिक अध्ययन र ज्ञान प्राप्तिका लागि बनाइएको हो।
+                कृपया यसलाई कुनै व्यक्तिलाई हानी पुर्‍याउने, गलत विवरण फैलाउने वा सामाजिक विवाद सिर्जना गर्ने उद्देश्यले प्रयोग नगर्नुहोस्।
+            </p>
+
+            <p class="text-gray-700 mt-4 font-medium">
+                ✔ Use the system responsibly  
+                ✔ Respect everyone's privacy  
+                ✔ Do not misuse any data
+            </p>
         </div>
 
-        <!-- FAMILY TREE -->
-        <!-- GRANDPARENTS -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
-            Grandparents / हजुरबुबा–हजुरआमा
-        </h2>
+        <!-- RIGHT SIDE: FAMILY TREE -->
+        <div class="md:col-span-2 bg-white shadow-xl rounded-xl border border-gray-200 p-8">
 
-        <div class="flex justify-center gap-16 mb-6">
-            @if($pgf)
-                <x-member-card :member="$pgf" />
-            @else
-                <x-member-card :member="null" label="No grandfather data available" />
-            @endif
+            <!-- GRANDPARENTS -->
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
+                Grandparents / हजुरबुबा–हजुरआमा
+            </h2>
 
-            @if($pgm)
-                <x-member-card :member="$pgm" />
-            @else
-                <x-member-card :member="null" label="No grandmother data available" />
-            @endif
-        </div>
+            <div class="flex justify-center gap-16 mb-6">
+                @if($pgf)
+                    <x-member-card :member="$pgf" />
+                @else
+                    <x-member-card :member="null" label="No grandfather data available" />
+                @endif
 
-        <div class="connector mb-8"></div>
+                @if($pgm)
+                    <x-member-card :member="$pgm" />
+                @else
+                    <x-member-card :member="null" label="No grandmother data available" />
+                @endif
+            </div>
 
-        <!-- PARENTS -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
-            Parents / बाबु–आमा
-        </h2>
+            <div class="connector mb-8"></div>
 
-        <div class="flex justify-center gap-16 mb-6">
-            @if($father)
-                <x-member-card :member="$father" />
-            @else
-                <x-member-card :member="null" label="No father data available" />
-            @endif
+            <!-- PARENTS -->
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
+                Parents / बाबु–आमा
+            </h2>
 
-            @if($mother)
-                <x-member-card :member="$mother" />
-            @else
-                <x-member-card :member="null" label="No mother data available" />
-            @endif
-        </div>
+            <div class="flex justify-center gap-16 mb-6">
+                @if($father)
+                    <x-member-card :member="$father" />
+                @else
+                    <x-member-card :member="null" label="No father data available" />
+                @endif
 
-        <div class="connector mb-8"></div>
+                @if($mother)
+                    <x-member-card :member="$mother" />
+                @else
+                    <x-member-card :member="null" label="No mother data available" />
+                @endif
+            </div>
 
-        <!-- USER & SPOUSE -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
-            You & Spouse / तपाईं र जीवनसाथी
-        </h2>
+            <div class="connector mb-8"></div>
 
-        <div class="flex justify-center gap-16 mb-6">
-            <x-member-card :member="$user" />
+            <!-- USER & SPOUSE -->
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
+                You & Spouse / तपाईं र जीवनसाथी
+            </h2>
 
-            @if($spouse)
-                <x-member-card :member="$spouse" />
-            @else
-                <x-member-card :member="null" label="No spouse data available" />
-            @endif
-        </div>
+            <div class="flex justify-center gap-16 mb-6">
+                <x-member-card :member="$user" />
 
-        <div class="connector mb-8"></div>
+                @if($spouse)
+                    <x-member-card :member="$spouse" />
+                @else
+                    <x-member-card :member="null" label="No spouse data available" />
+                @endif
+            </div>
 
-        <!-- CHILDREN -->
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
-            Children / सन्तान
-        </h2>
+            <div class="connector mb-8"></div>
 
-        <div class="flex justify-center gap-16 mb-16">
-            @forelse ($children as $child)
-                <x-member-card :member="$child" />
-            @empty
-                <x-member-card :member="null" label="No children found" />
-            @endforelse
+            <!-- CHILDREN -->
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
+                Children / सन्तान
+            </h2>
+
+            <div class="flex justify-center flex-wrap gap-10 mb-10">
+                @forelse ($children as $child)
+                    <x-member-card :member="$child" />
+                @empty
+                    <x-member-card :member="null" label="No children found" />
+                @endforelse
+            </div>
         </div>
 
     </div>
