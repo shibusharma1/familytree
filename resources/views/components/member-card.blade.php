@@ -4,9 +4,14 @@
 
     {{-- PHOTO --}}
     @if($member)
-    <img src="{{ $member && $member->photo ? asset('storage/'.$member->photo) : asset('male.jpg') }}"
-        class="rounded-full shadow-lg bg-white w-[90px] h-[90px] object-cover border-4 border-green-600" />
-  
+    <img src="{{ $member && $member->photo 
+        ? asset('storage/' . $member->photo) 
+        : ($member->gender === 'female' 
+            ? asset('woman.png') 
+            : asset('man.png')) 
+    }}" class="rounded-full shadow-lg bg-white w-[90px] h-[90px] object-cover border-4 border-green-600" />
+
+
     @endif
     {{-- NAME --}}
     <p class="mt-3 text-gray-800 font-bold">

@@ -114,7 +114,7 @@
 
             <!-- USER & SPOUSE -->
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center border-b pb-2">
-                You & Spouse / तपाईं र जीवनसाथी
+               {{ $user->first_name }} & Spouse / {{ $user->first_name }} र जीवनसाथी
             </h2>
 
             <div class="flex justify-center gap-16 mb-6">
